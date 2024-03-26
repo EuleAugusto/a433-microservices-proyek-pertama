@@ -1,48 +1,17 @@
+version: '2'
 
 services:
-
   item-db:
-
     image: mongo:3
-
     volumes:
-
       - app-db:/data/db
 
-    environment:
-
-      DB_ROOT_PASSWORD: dicoding
-
-      DB_DATABASE: todo-db
-
-
   item-app:
-
-    image: item-app
-
-    command: sh -c "yarn install && yarn run dev"
-
+    build: strixseloputo/item-app:v1
     ports:
-
-      - 80:80
-
-    working_dir: /app
-
-    volumes:
-
-      - ./:/app
-
-    environment:
-
-      DB_HOST: mysql
-
-      DB_USER: root
-
-      DB_PASSWORD: dicoding
-
-      MONGO_DB: todo-db
-
+      - "80:8080"
+    depends_on:
+      - item-db
 
 volumes:
-
   app-db:
