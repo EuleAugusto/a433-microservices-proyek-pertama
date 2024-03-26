@@ -8,7 +8,7 @@ docker images
 docker tag item-app:v1 strixseloputo/item-app:v1
 
 #masuk ke docker hub
-docker login
+echo $PASSWORD_DOCKER_HUB | docker login -u strixseloputo --password-stdin
 
 #mengupload image ke docker hub
 docker push strixseloputo/item-app:v1
